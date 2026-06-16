@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
+
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
@@ -17,11 +18,11 @@ const Navbar = () => {
           <a href="#" className="hover:text-blue-600 transition">
             Features
           </a>
-
-          <a href="#" className="hover:text-blue-600 transition">
-            How It Works
-          </a>
-
+          
+          <Link to = '/guide' className="hover:text-blue-600 transition">
+          How it Works
+          </Link>
+        
           <a href="#" className="hover:text-blue-600 transition">
             Testimonials
           </a>

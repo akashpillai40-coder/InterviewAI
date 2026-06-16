@@ -7,6 +7,8 @@ import ProtectedRoute from './routes/ProtectedRoute'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 
+import Guide from './components/Guide'
+
 const App = () => {
   return (
     <>
@@ -14,7 +16,7 @@ const App = () => {
     <Routes>
       
       <Route path='/' element={<Hero />} />
-
+       <Route path="/guide" element={<Guide />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 

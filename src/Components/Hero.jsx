@@ -43,8 +43,7 @@ const HeroPage = () => {
 
   return (
     <div className="min-h-screen bg-[#fcfcff] font-sans text-gray-900 antialiased">
-                {/* ─── FIXED NAVBAR ─── */}
-      
+      {/* ─── FIXED NAVBAR ─── */}
 
       {/* ─── ADDED BACK: Hero Banner Text Block ─── */}
       <div className="max-w-7xl mx-auto px-8 py-20 text-center">
