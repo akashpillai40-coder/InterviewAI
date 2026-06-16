@@ -9,26 +9,22 @@ import Hero from './components/Hero'
 
 const App = () => {
   return (
+    <>
+     <Navbar />
     <Routes>
-      {/* public landing page */}
-      <Route path="/" element={
-        <>
-          <Navbar />
-          <Hero />
-        </>
-      } />
+      
+      <Route path='/' element={<Hero />} />
 
-      {/* public auth pages */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* protected page */}
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <Dashboard />
         </ProtectedRoute>
       } />
     </Routes>
+    </>
   )
 }
 
