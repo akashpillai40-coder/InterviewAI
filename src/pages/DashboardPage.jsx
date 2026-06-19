@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom'
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const { user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -37,4 +37,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DashboardPage

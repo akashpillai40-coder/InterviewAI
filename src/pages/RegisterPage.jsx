@@ -6,7 +6,7 @@ import { registerUser } from "../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 
-const Register = () => {
+const RegisterPage = () => {
   const { isLoading, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -97,4 +97,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

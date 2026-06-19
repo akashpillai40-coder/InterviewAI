@@ -5,7 +5,7 @@ import { loginUser } from "../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 
-const Login = () => {
+const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading, error } = useSelector((state) => state.auth);
@@ -75,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

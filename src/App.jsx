@@ -1,28 +1,29 @@
 // src/App.jsx
 import { Routes, Route } from 'react-router-dom'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Dashboard from './pages/Dashboard'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import DashboardPage from './pages/DashboardPage'
 import ProtectedRoute from './routes/ProtectedRoute'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import LandingPage from './pages/LandingPage'
 
 import Guide from './components/Guide'
+
 
 const App = () => {
   return (
     <>
-     <Navbar />
+                <Navbar />
     <Routes>
       
-      <Route path='/' element={<Hero />} />
-       <Route path="/guide" element={<Guide />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path='/' element={<LandingPage />} />
+      <Route path="/guide" element={<Guide />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
 
       <Route path="/dashboard" element={
         <ProtectedRoute>
-          <Dashboard />
+          <DashboardPage />
         </ProtectedRoute>
       } />
     </Routes>
