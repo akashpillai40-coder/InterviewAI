@@ -29,7 +29,9 @@ const DashboardPage = () => {
 
       <div className="bg-white p-8 rounded-2xl shadow-md">
         <h2 className="text-xl font-semibold mb-4">Start a new interview</h2>
-        <button className="px-8 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600">
+        <button 
+       onClick={() => navigate('/interview/new')}
+        className="px-8 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600">
           New Interview
         </button>
       </div>

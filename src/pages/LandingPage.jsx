@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 
 const LandingPage = () => {
   // Data matrix mapped to populate the feature grid dynamically
@@ -45,7 +44,7 @@ const LandingPage = () => {
   return (
     <>
       <div className="min-h-screen bg-[#fcfcff] font-sans text-gray-900 antialiased">
-        {/* ─── FIXED NAVBAR ─── */}
+        
 
         {/* ─── ADDED BACK: Hero Banner Text Block ─── */}
         <div className="max-w-7xl mx-auto px-8 py-20 text-center">

@@ -5,7 +5,13 @@ import { loginUser } from "../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 
+//Dummy
+import { login } from "../store/authSlice";
+
 const LoginPage = () => {
+
+  const DUMMY = { email: "akash@example.com", password: "123456", fName: "Akash" } 
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoading, error } = useSelector((state) => state.auth);
@@ -23,11 +29,19 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData))
-      .unwrap()             //unpacks payload from store, pass clean payload to .then
-      .then(() => navigate("/dashboard"))
-      .catch(() => {});
-  };
+    if(formData.email === DUMMY.email && formData.password === DUMMY.password) {
+          dispatch(login({
+        user:  { fName: DUMMY.fName, email: DUMMY.email },
+        token: "dummy-token-123",
+      }));
+      navigate("/dashboard");
+      return;
+    }
+    }
+   
+        
+      //.unwrap()             //unpacks payload from store, pass clean payload to .then
+      
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">

@@ -22,18 +22,27 @@ export const registerUser = createAsyncThunk(
 //creating slice
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        user: null,
-        token: null,
-        isLoading: false,
-        error: null
-    },
+
+    // authSlice.js — just change initialState until backend is ready
+ initialState: {
+  user:            { fName: "", email:null  },   //'akash@example.com'
+  token:           '',
+  isAuthenticated: false,   // ← goes straight to dashboard
+  isLoading:       false,
+  error:           null,
+},
     reducers: {
         //sync only logout
         logout:(state) => {
             state.user = null
             state.token = null
             state.error = null
+            state.isAuthenticated = false
+        }, 
+        login: (state, action) => {
+            state.user = action.payload.user
+            state.isAuthenticated = true
+            state.token = action.payload.token
         }
     }, 
     //Async actions state update with data from API {user, token} and initialStates
@@ -72,5 +81,5 @@ const authSlice = createSlice({
         })
     }
 })
- export const { logout } = authSlice.actions
+ export const { logout, login } = authSlice.actions
  export default authSlice.reducer
