@@ -24,7 +24,7 @@ const LoginPage = () => {
   //Form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    //old formData spread over and {email: "hello@akashpillai.in"}
+    //old formData spread over 
   };
 
   const handleSubmit = (e) => {
@@ -38,7 +38,7 @@ const LoginPage = () => {
       return;
     }
     }
-   
+   //sending name and email to store just to make global pipeline
         
       //.unwrap()             //unpacks payload from store, pass clean payload to .then
       
