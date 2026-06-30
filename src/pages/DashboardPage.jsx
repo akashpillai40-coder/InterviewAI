@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom'
 
+import ErrorMessage from '../Components/ErrorMessage'
+import LoadingSpinner from '../Components/LoadingSpinner'
+
 const DashboardPage = () => {
   const { user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()

@@ -16,7 +16,7 @@ export const registerUser = createAsyncThunk(
        const response = await axios.post('http://localhost:5000/api/auth/register', formData)
         return response.data   //{user, token} === action.payload
     }
-   
+   //HTTP is state-less and need to verify each time so we use token just compare with the token in MongoDB
 )
 //reducer Name: 'auth'
 //creating slice
