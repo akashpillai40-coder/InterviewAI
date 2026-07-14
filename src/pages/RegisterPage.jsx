@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import { useState } from "react";
 import { registerUser } from "../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,16 +16,25 @@ const RegisterPage = () => {
     email: "",
     password: "",
   });
+
   //upDate form data
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   //Form submit and payload from store
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData))
+
+    const payload = {
+      name: `${formData.fName} ${formData.lastName}`.trim(),
+      email: formData.email,
+      password: formData.password,
+    };
+
+    dispatch(registerUser(payload))
       .unwrap()
-      .then(() => navigateTo("/dashboard")) //navigate to Dashboard
+      .then(() => navigateTo("/dashboard"))
       .catch(() => {});
   };
 

@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosInstance from "../API/axiosInstance";
 
 //login API call - async-thunk
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
      async(formData) => {
-          const response = await axios.post('http://localhost:5000/api/auth/login', formData)
+          const response = await axiosInstance.post('/api/auth/login', formData)
           return response.data   //{user, token}
      }
 )
@@ -13,7 +13,7 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
     async(formData) => {
-       const response = await axios.post('http://localhost:5000/api/auth/register', formData)
+       const response = await axiosInstance.post('/api/auth/register', formData)
         return response.data   //{user, token} === action.payload
     }
    //HTTP is state-less and need to verify each time so we use token just compare with the token in MongoDB
@@ -25,8 +25,8 @@ const authSlice = createSlice({
 
     // authSlice.js — just change initialState until backend is ready
  initialState: {
-  user:            { fName: "", email:null  },   //'akash@example.com'
-  token:           '',
+  user:   null,
+  token:   localStorage.getItem('token') || null,
   isAuthenticated: false,   // ← goes straight to dashboard
   isLoading:       false,
   error:           null,
@@ -34,16 +34,12 @@ const authSlice = createSlice({
     reducers: {
         //sync only logout
         logout:(state) => {
+            localStorage.removeItem('token')
             state.user = null
             state.token = null
             state.error = null
             state.isAuthenticated = false
         }, 
-        login: (state, action) => {
-            state.user = action.payload.user //Payload: { fName: DUMMY.fName, email: DUMMY.email }
-            state.isAuthenticated = true
-            state.token = action.payload.token
-        }
     }, 
     //Async actions state update with data from API {user, token} and initialStates
     extraReducers: (builder) => {
@@ -57,6 +53,8 @@ const authSlice = createSlice({
             state.error = null
             state.user = action.payload.user
             state.token = action.payload.token
+            state.isAuthenticated = true
+            localStorage.setItem('token', action.payload.token)
         })
         builder.addCase(loginUser.rejected, (state, action) => {
             state.isLoading = false
@@ -72,8 +70,10 @@ const authSlice = createSlice({
  //if user reg in MongoDB will give {user, token} => response.data === action.payload
             state.isLoading = false
             state.error = null
+            state.isAuthenticated = true
             state.user = action.payload.user
             state.token = action.payload.token
+            localStorage.setItem('token', action.payload.token)
         })
         builder.addCase(registerUser.rejected, (state, action) => {
             state.error = action.error.message
@@ -81,7 +81,7 @@ const authSlice = createSlice({
         })
     }
 })
- export const { logout, login } = authSlice.actions
+ export const { logout } = authSlice.actions
  export default authSlice.reducer
 
  

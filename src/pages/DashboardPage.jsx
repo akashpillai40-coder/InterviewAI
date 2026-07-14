@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom'
 
-import ErrorMessage from '../Components/ErrorMessage'
-import LoadingSpinner from '../Components/LoadingSpinner'
 
 const DashboardPage = () => {
   const { user } = useSelector((state) => state.auth)
@@ -20,7 +18,7 @@ const DashboardPage = () => {
     <div className="min-h-screen bg-gray-50 p-10">
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-3xl font-bold text-gray-900">
-          Welcome, {user?.fName || 'User'}
+          Welcome, {user?.name || 'User'}
         </h1>
         <button
           onClick={handleLogout}

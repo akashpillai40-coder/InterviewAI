@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../API/axiosInstance";
+
 
 const NewInterviewPage = () => {
+  
   const Roles = [
     {
       icon: "🖥️",
@@ -64,6 +68,26 @@ const NewInterviewPage = () => {
   const [qCount, setQCount] = useState(5);
   const [difficulties, setDifficulties] = useState("");
 
+  const navigate = useNavigate()
+  const [error, setError] = useState('')
+
+  const handleStart = async () => {
+  setLoading(true)
+  setError('')
+  try {
+    const res = await axiosInstance.post('/api/interview/create', {
+      role,
+      difficulty: difficulties.replace(/[🟢🟡🔴]\s*/g, '').toLowerCase(),
+      count: qCount
+    })
+    navigate(`/interview/${res.data._id}/session`)
+  } catch (err) {
+    setError('Failed to create interview. Please try again.')
+  } finally {
+    setLoading(false)
+  }
+}
+  // Two states for Selected and non-selected
   const selected = "border-purple-500 bg-purple-50 text-purple-700 shadow-sm";
   const idle =
     "border-gray-300 bg-white text-gray-700 hover:bg-purple-50 hover:border-purple-300";
@@ -192,12 +216,14 @@ const NewInterviewPage = () => {
           </p>
         </div>
         <button
+        onClick={handleStart}
           disabled={!role || !experience || !difficulties}
           className="bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 disabled:opacity-40
             disabled:cursor-not-allowed disabled:hover:scale-100
             text-white text-sm font-semibold rounded-xl px-6 py-3 transition-all duration-200 cursor-pointer"
         >
-          Start Interview →
+          {loading ? 'Generating....' : 'Start Interview →'}
+          
         </button>
       </div>
     </div>
