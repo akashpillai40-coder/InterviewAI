@@ -70,12 +70,13 @@ const NewInterviewPage = () => {
 
   const navigate = useNavigate()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleStart = async () => {
   setLoading(true)
   setError('')
   try {
-    const res = await axiosInstance.post('/api/interview/create', {
+    const res = await axiosInstance.post('/interview/create', {
       role,
       difficulty: difficulties.replace(/[🟢🟡🔴]\s*/g, '').toLowerCase(),
       count: qCount

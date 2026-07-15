@@ -9,10 +9,7 @@ const ProtectedRoute = ({ children }) => {
   if (!token) {
     return <Navigate to="/login" replace />
   }
-  if(!isAuthenticated) {
-    return <Navigate to="/login" replace />
-  }
-
+  
   return children //render whatever inside <Protected Route /> in App.jsx
 }
 

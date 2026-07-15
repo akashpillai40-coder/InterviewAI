@@ -5,7 +5,7 @@ import axiosInstance from "../API/axiosInstance";
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
      async(formData) => {
-          const response = await axiosInstance.post('/api/auth/login', formData)
+          const response = await axiosInstance.post('/auth/login', formData)
           return response.data   //{user, token}
      }
 )
@@ -13,10 +13,18 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
     async(formData) => {
-       const response = await axiosInstance.post('/api/auth/register', formData)
+       const response = await axiosInstance.post('/auth/register', formData)
         return response.data   //{user, token} === action.payload
     }
    //HTTP is state-less and need to verify each time so we use token just compare with the token in MongoDB
+)
+
+export const getMe = createAsyncThunk(
+  'auth/getMe',
+  async () => {
+    const response = await axiosInstance.get('/auth/me')
+    return response.data  // { user }
+  }
 )
 //reducer Name: 'auth'
 //creating slice
@@ -43,6 +51,12 @@ const authSlice = createSlice({
     }, 
     //Async actions state update with data from API {user, token} and initialStates
     extraReducers: (builder) => {
+
+         builder.addCase(getMe.fulfilled, (state, action) => {
+         state.user            = action.payload.user
+         state.isAuthenticated = true
+         })
+         
         //Login User
         builder.addCase(loginUser.pending, (state) => {
             state.isLoading = true
@@ -79,6 +93,8 @@ const authSlice = createSlice({
             state.error = action.error.message
             state.isLoading = false
         })
+
+       
     }
 })
  export const { logout } = authSlice.actions
