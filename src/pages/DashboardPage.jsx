@@ -4,6 +4,8 @@ import { logout, getMe } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
+import HistoryPage from './HistoryPage'
+
 
 const DashboardPage = () => {
   const { user } = useSelector((state) => state.auth)
@@ -43,6 +45,17 @@ const DashboardPage = () => {
           New Interview
         </button>
       </div>
+
+      <div className="bg-white p-8 rounded-2xl shadow-md">
+        <h2 className="text-xl font-semibold mb-4">Previous Interviews</h2>
+        <button 
+       onClick={() => navigate('/interview/history')}
+        className="px-8 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-purple-600 cursor-pointer">
+          History
+        </button>
+      </div>
+
+
     </div>
   )
 }

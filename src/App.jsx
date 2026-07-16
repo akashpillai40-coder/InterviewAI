@@ -10,6 +10,7 @@ import NewInterviewPage from "./pages/NewInterviewPage";
 
 import ResultsPage from "./pages/ResultsPage";
 import SessionPage from "./pages/SessionPage";
+import HistoryPage from "./pages/HistoryPage";
 
 import Guide from "./components/Guide";
 
@@ -59,6 +60,18 @@ const App = () => {
           </ProtectedRoute>
         }
         />
+        <Route 
+          path="/interview/history"
+          element={
+            <ProtectedRoute>
+               <HistoryPage />
+            </ProtectedRoute>
+            
+          }
+        />
+
+
+
       </Routes>
     </>
   );
