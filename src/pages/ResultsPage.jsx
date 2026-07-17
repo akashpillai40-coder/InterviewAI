@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../API/axiosInstance";
 
+import LoadingSpinner from '../Components/LoadingSpinner'
+
 const ResultsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -11,9 +13,11 @@ const ResultsPage = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    //fetching a particular individual doc
     const fetchInterview = async () => {
       try {
         const res = await axiosInstance.get(`/interview/${id}`);
+    
         setInterview(res.data);
       } catch (err) {
         setError("Failed to load interview results.");
@@ -25,16 +29,13 @@ const ResultsPage = () => {
     fetchInterview();
   }, [id]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FAF9F5]">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading results...</p>
-        </div>
-      </div>
-    );
-  }
+if (loading) {
+  return (
+    <div className="min-h-screen bg-[#FAF9F5] flex items-center justify-center">
+      <LoadingSpinner text="Getting your Results..." />
+    </div>
+  );
+}
 
   if (error) {
     return (

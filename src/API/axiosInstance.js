@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { create } from "axios";
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -26,3 +26,7 @@ axiosInstance.interceptors.response.use(
     }
 )
 export default axiosInstance
+
+
+
+

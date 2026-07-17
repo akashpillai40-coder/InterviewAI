@@ -37,7 +37,7 @@ const DashboardPage = () => {
         </button>
       </div>
 
-      <div className="bg-white p-8 rounded-2xl shadow-md">
+      <div className="bg-white mb-6 p-8 rounded-2xl shadow-md">
         <h2 className="text-xl font-semibold mb-4">Start a new interview</h2>
         <button 
        onClick={() => navigate('/interview/new')}
@@ -45,7 +45,7 @@ const DashboardPage = () => {
           New Interview
         </button>
       </div>
-
+        
       <div className="bg-white p-8 rounded-2xl shadow-md">
         <h2 className="text-xl font-semibold mb-4">Previous Interviews</h2>
         <button 
