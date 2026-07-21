@@ -4,14 +4,13 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Navbar from "./components/Navbar";
 import LandingPage from "./pages/LandingPage";
 import NewInterviewPage from "./pages/NewInterviewPage";
-
 import ResultsPage from "./pages/ResultsPage";
 import SessionPage from "./pages/SessionPage";
 import HistoryPage from "./pages/HistoryPage";
 
+import Navbar from "./components/Navbar";
 import Guide from "./components/Guide";
 
 const App = () => {
