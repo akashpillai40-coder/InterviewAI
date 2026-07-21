@@ -1,5 +1,3 @@
-import React from "react";
-
 import { useState } from "react";
 import { registerUser } from "../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";

@@ -1,10 +1,8 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../API/axiosInstance";
-
+import { useState } from "react";
 
 const NewInterviewPage = () => {
-  
   const Roles = [
     {
       icon: "🖥️",
@@ -68,26 +66,27 @@ const NewInterviewPage = () => {
   const [qCount, setQCount] = useState(5);
   const [difficulties, setDifficulties] = useState("");
 
-  const navigate = useNavigate()
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleStart = async () => {
-  setLoading(true)
-  setError('')
-  try {
-    const res = await axiosInstance.post('/interview/create', {
-      role,
-      difficulty: difficulties.replace(/[🟢🟡🔴]\s*/g, '').toLowerCase(),
-      count: qCount
-    })
-    navigate(`/interview/${res.data._id}/session`)
-  } catch (err) {
-    setError('Failed to create interview. Please try again.')
-  } finally {
-    setLoading(false)
-  }
-}
+    setLoading(true);
+    setError("");
+    try {
+      const res = await axiosInstance.post("/interview/create", {
+        role,
+        difficulty: difficulties.replace(/[🟢🟡🔴]\s*/gu, "").toLowerCase(),
+        count: qCount,
+      });
+      navigate(`/interview/${res.data._id}/session`);
+    } catch (err) {
+      setError("Failed to create interview. Please try again.");
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
   // Two states for Selected and non-selected
   const selected = "border-purple-500 bg-purple-50 text-purple-700 shadow-sm";
   const idle =
@@ -188,6 +187,12 @@ const NewInterviewPage = () => {
         </div>
       </section>
 
+      {error && (
+        <div className="mb-4 rounded-lg bg-red-100 border border-red-300 text-red-700 px-4 py-3">
+          {error}
+        </div>
+      )}
+
       {/* ----------── Summary Bar ---------------── */}
       <div className="flex items-center justify-between border border-gray-200 rounded-xl bg-white p-5 shadow-sm">
         <div>
@@ -217,18 +222,16 @@ const NewInterviewPage = () => {
           </p>
         </div>
         <button
-        onClick={handleStart}
+          onClick={handleStart}
           disabled={!role || !experience || !difficulties}
           className="bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 disabled:opacity-40
             disabled:cursor-not-allowed disabled:hover:scale-100
             text-white text-sm font-semibold rounded-xl px-6 py-3 transition-all duration-200 cursor-pointer"
         >
-          {loading ? 'Generating....' : 'Start Interview →'}
-          
+          {loading ? "Generating...." : "Start Interview →"}
         </button>
       </div>
     </div>
-    
   );
 };
 

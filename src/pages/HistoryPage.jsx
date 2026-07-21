@@ -18,6 +18,7 @@ const HistoryPage = () => {
         setHistory(res.data);
       } catch (err) {
         setError("Oops! Failed to load your previous interviews.");
+        console.log(err)
       } finally {
         setLoading(false);
       }

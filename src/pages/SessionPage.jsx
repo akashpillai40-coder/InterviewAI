@@ -20,9 +20,11 @@ const SessionPage = () => {
       try {
         const res = await axiosInstance.get(`/interview/${id}`)
         setInterview(res.data)
-        console.log(interview)
+      
       } catch (err) {
         setError('Failed to load interview.')
+        console.log(err)
+      
       } finally {
         setLoading(false)
       }
@@ -54,6 +56,7 @@ const SessionPage = () => {
       }
     } catch (err) {
       setError('Failed to submit answer. Please try again.')
+      console.log(err);
     } finally {
       setSubmitting(false)
     }

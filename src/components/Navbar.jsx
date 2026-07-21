@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import React from "react";
-
 
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition">
+        <Link
+          to="/"
+          className="flex items-center gap-3 hover:opacity-90 transition"
+        >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
             AI
           </div>
@@ -18,11 +19,11 @@ const Navbar = () => {
           <a href="#" className="hover:text-blue-600 transition">
             Features
           </a>
-          
-          <Link to = '/guide' className="hover:text-blue-600 transition">
-          How it Works
+
+          <Link to="/guide" className="hover:text-blue-600 transition">
+            How it Works
           </Link>
-        
+
           <a href="#" className="hover:text-blue-600 transition">
             Testimonials
           </a>

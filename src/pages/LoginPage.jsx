@@ -1,4 +1,3 @@
-import React from "react";
 
 import { useState } from "react";
 import { loginUser } from "../store/authSlice";
@@ -27,7 +26,7 @@ const LoginPage = () => {
     dispatch(loginUser(formData))
       .unwrap() //unpacks payload from store, pass clean payload to .then
       .then(() => navigate("/dashboard"))
-      .catch((error) => {});
+      .catch((error) => {console.log(error)});
   };
 
   return (

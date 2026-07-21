@@ -1,5 +1,3 @@
-import React from "react";
-
 const LandingPage = () => {
   // Data matrix mapped to populate the feature grid dynamically
   const features = [
@@ -44,8 +42,6 @@ const LandingPage = () => {
   return (
     <>
       <div className="min-h-screen bg-[#fcfcff] font-sans text-gray-900 antialiased">
-        
-
         {/* ─── ADDED BACK: Hero Banner Text Block ─── */}
         <div className="max-w-7xl mx-auto px-8 py-20 text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-5 tracking-tight">
