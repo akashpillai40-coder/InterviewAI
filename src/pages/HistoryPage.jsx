@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../API/axiosInstance";
-import LoadingSpinner from '../Components/LoadingSpinner'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 
 const HistoryPage = () => {
